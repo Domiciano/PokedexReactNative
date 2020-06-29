@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import { Image, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -9,14 +9,19 @@ import Third from '../fragments/ThirdScreen'
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
-  return (
-    
+export default class MainScreen extends Component{
 
+    //Se requiere para obtener las variables enviadas
+    constructor(props){
+      super(props);
+      
+    }
 
-
-
-
+    render(){
+      //Recibir los parametros que enviando al momento de navegar
+      
+      
+      return (
       <Tab.Navigator
           screenOptions={
             ({ route }) => ({
@@ -48,10 +53,19 @@ export default function App() {
         }}
         
       >
-        <Tab.Screen name="First" component={First} />
-        <Tab.Screen name="Second" component={Second} />
-        <Tab.Screen name="Third" component={Third} />
-      </Tab.Navigator>
+        <Tab.Screen name="First">
+          {() => <First userName={this.props.route.params.username}/>}
+        </Tab.Screen>
+        <Tab.Screen name="Second">
+          {() => <Second/>}
+        </Tab.Screen>
+        <Tab.Screen name="Third">
+          {() => <Third/>}
+        </Tab.Screen>
+      </Tab.Navigator>  
+    );
+  }
     
-  );
+  
+    
 }

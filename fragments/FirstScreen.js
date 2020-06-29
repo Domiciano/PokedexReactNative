@@ -95,10 +95,8 @@ export default class FirstScreen extends Component {
   //CILCO DE VIDA****
 
   componentDidMount() {  
-    //Recibir los parametros que enviando al momento de navegar
-    //const { username } = this.props.route.params;
-    //console.log('>>>>>>>>');
-    //console.log(username);
+    //Este es un parametro que se metió en MainScreen.js
+    console.log(this.props.username);
 
     //Funciones iniciales deben ir aqui
     this.initPokemonList();
