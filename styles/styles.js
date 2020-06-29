@@ -71,6 +71,58 @@ const styles = StyleSheet.create({
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center'
+        },
+
+
+        //Fragments: Navigation bar
+
+        bottomBar: {
+            flexDirection: 'row',
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            height: 60,
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            backgroundColor: '#DDD',
+
+        },
+
+        barButton: {
+            width: 40,
+            height: 40,
+            opacity: 0.3
+        },
+
+        barButtonSelected: {
+            width: 40,
+            height: 40,
+            opacity: 1
+        },
+
+        //Fragments: Content
+        fragmentContainer: {
+            position: 'absolute',
+            bottom: 60,
+            top:0,
+            right:0,
+            left:0,
+            backgroundColor: '#fff',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            flexDirection: 'column',
+            flexWrap: 'nowrap'
+        },
+
+        fragment: {
+            width: '100%',
+            height: '100%',
+        },
+
+        fragmentContent: {
+            flex: 1,
+            flexDirection: 'column',
+            alignItems:'center'
         }
 
     });

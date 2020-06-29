@@ -3,16 +3,21 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './components/LoginScreen'
 import Profile from './components/ProfileScreen'
+import Main from './components/MainScreen'
 
 export default class App extends Component {
-
-  
 
   render(){
     const Stack = createStackNavigator();
     return (
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
+
+            <Stack.Screen
+              name="Main"
+              component={Main}
+            />
+
             <Stack.Screen
               name="Login"
               component={Login}
