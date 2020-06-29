@@ -5,6 +5,7 @@ import CheckBox from '@react-native-community/checkbox';
 
 export default class ProfileScreen extends Component {
 
+
   constructor(props){
     //Las variables globales se definen en el constructor
     super(props)
@@ -39,6 +40,9 @@ export default class ProfileScreen extends Component {
     fetch('https://pokedex-e7321.firebaseio.com/pokemones.json')
     .then( (response) => response.json() )
     .then((json) => {
+      if(json === null){
+        return;
+      }
       Object.entries(json).forEach(([key, value]) => {
         let name = value.forms[0].name;
         let url = value.sprites.front_default;
@@ -66,6 +70,13 @@ export default class ProfileScreen extends Component {
     this.addPokemonToList(pokeObj);
   }
 
+  deleteAllPokemons = () => {
+    fetch('https://pokedex-e7321.firebaseio.com/pokemones.json', {
+      method: 'DELETE'
+    });
+    this.setState( {pokemonList: []} ) ;
+  }
+
   rowRender = ({item}) => {
     return (
       <View style={styles.rowList}>
@@ -79,6 +90,12 @@ export default class ProfileScreen extends Component {
   //CILCO DE VIDA****
 
   componentDidMount() {  
+    //Recibir los parametros que enviando al momento de navegar
+    const { username } = this.props.route.params;
+    console.log('>>>>>>>>');
+    console.log(username);
+
+    //Funciones iniciales deben ir aqui
     this.initPokemonList();
   }
 
@@ -110,13 +127,19 @@ export default class ProfileScreen extends Component {
             />
           </View>
           <Text>{this.state.pokemonName}</Text>
-          <Button
-              onPress={this.postPokemon}
-              title="Capturar"
-              color="#841584"
-          />
-          
-          
+
+          <View style={[styles.row]}>
+            <Button
+                onPress={this.postPokemon}
+                title="Capturar Pokemon"
+                color="#841584"
+            />
+            <Button
+                onPress={this.deleteAllPokemons}
+                title="Eliminar todo"
+                color="#841584"
+            /> 
+          </View>
 
           <FlatList
             style={{width:'100%'}}

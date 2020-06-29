@@ -10,22 +10,17 @@ export default class LoginScreen extends Component {
     this.state = {
       count : 1,
       alfa: false,
-      input: ""
+      username: "",
+      password: "",
     }
-  }
-
-  onPressButton = () => {
-    //this.setState({count : this.state.count + 1})
-    //alert("Alfa: "+ this.state.alfa + "\nText: "+this.state.input)
-    //this.props.navigation.navigate('Profile')
   }
 
   onValueChange = ()=>{
     this.setState({alfa: !this.state.alfa})
   }
 
-  onChangeText = (text) => {
-    this.setState({input: text})
+  navigateToProfile = () => {
+    this.props.navigation.navigate('Profile', { username: this.state.username });
   }
 
   render() {
@@ -37,23 +32,22 @@ export default class LoginScreen extends Component {
             style={[styles.icesiLogo, styles.bottomMargin]}
             source={require('../images/icesi.png')}
           />
-          
-
+        
           <TextInput
             style={styles.basicTextIntput}
             placeholder="Identificación"
-            value={this.state.input}
-            onChangeText={text => this.onChangeText(text)}
+            value={this.state.username}
+            onChangeText={text => this.setState({username: text}) }
           />  
 
           <TextInput   
             style={styles.basicTextIntput}
             placeholder="Contraseña"
-            value={this.state.input}
-            onChangeText={text => this.onChangeText(text)}
+            value={this.state.password}
+            onChangeText={text =>  this.setState({password: text}) }
           />
 
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}
+          <TouchableOpacity onPress={this.navigateToProfile}
             style={[styles.signInButton, styles.topMargin]}>
             <Text style={styles.signInTextButton}>Ingresar</Text>
           </TouchableOpacity>
