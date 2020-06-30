@@ -14,26 +14,16 @@ export default class FirstScreen extends Component {
       pokemonID : "",
       pokemonList : []
     }
+    //No todas las variables deben ir en state. Si no hacen parte de la UI, pero si se requieren
+    //Use el constructor para definirlas. Estas son las variables globales.
+    //No se pueden declarar por fuera de aqui.
     this.pokemon = null;
   }
 
-  getPokemon = ()=>{
-    fetch('https://pokeapi.co/api/v2/pokemon/'+this.state.pokemonID)
-    .then((response) => response.json())
-    .then((json) => {
-      this.pokemon = json;
-      this.setState({pokemonName : json.forms[0].name})
-      this.setState({url : json.sprites.front_default})
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
 
-  addPokemonToList(pokeObj){
-    var newArray = [pokeObj, ...this.state.pokemonList];
-    this.setState( {pokemonList: newArray} ) ;
-  }
+  //Las funciones HTTP se hacen con fetch. Tener encuenta que este metodo devuelve una promesa
+  //Si no sabe que son los promesas lean esto:
+  //https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Usar_promesas
 
   initPokemonList(){
     fetch('https://pokedex-e7321.firebaseio.com/pokemones.json')
@@ -53,7 +43,31 @@ export default class FirstScreen extends Component {
       
     })
     .catch((error) => {
-      console.error(error);
+      alert('Verifique su conexión a internet')
+    });
+  }
+
+  getPokemon = ()=>{ 
+    if(this.state.pokemonID.trim() === ''){ 
+      alert('Debe escribir un numero o un nombre');
+      return;
+    }
+    fetch('https://pokeapi.co/api/v2/pokemon/'+this.state.pokemonID)
+    .then((response) => {
+      if(response.ok){
+        return response.json();
+      }else{
+        throw new Error('El pokemon requerido no existe');
+      }
+    })
+    .then((json) => {
+      this.pokemon = json;
+      this.setState({pokemonName : json.forms[0].name})
+      this.setState({url : json.sprites.front_default})
+    })
+    .catch((error) => {
+      alert(error);
+      console.log(error);
     });
   }
 
@@ -71,6 +85,9 @@ export default class FirstScreen extends Component {
       console.log(json.name);  
       let pokeObj = {key: json.name, name:this.pokemon.forms[0].name, url:this.pokemon.sprites.front_default};
       this.addPokemonToList(pokeObj);
+    })
+    .catch((error) => {
+      alert('Verifique su conexión a internet')
     });
     
   }
@@ -78,9 +95,26 @@ export default class FirstScreen extends Component {
   deleteAllPokemons = () => {
     fetch('https://pokedex-e7321.firebaseio.com/pokemones.json', {
       method: 'DELETE'
-    });
-    this.setState( {pokemonList: []} ) ;
+    })
+    .then(
+      (response)=>this.setState( {pokemonList: []} )
+    )
+    .catch(
+      (error) => alert('No se puede eliminar, verifique su conexión a internet')
+    );
+     
   }
+
+  //Si representan alguna lista y la tienen en el state. 
+  //Esta es la forma correcta de agregar a la lista que esta dentro del state.
+
+  addPokemonToList(pokeObj){
+    var newArray = [pokeObj, ...this.state.pokemonList];
+    this.setState( {pokemonList: newArray} ) ;
+  }
+
+  //Si requiren separar la logica en algun momento para retornar un componente
+  //React infiere que es un componente cuando retornan HTML
 
   rowRender = ({item}) => {
     return (
@@ -92,13 +126,23 @@ export default class FirstScreen extends Component {
   };
   
 
-  //CILCO DE VIDA****
+  /*
+    El metodo componentDidMount es un metodo del ciclo de vida y sucede asi
+    componentDidMount -> render -> componentWillUnMount
+    Aunque hay mas metodos
+
+    Este metodo es adecuado para llamar funciones por unica vez. No se recomienda
+    que las funciones iniciales se pongan en el render porque al usar setState, dichas funciones 
+    tambien van a ser llamadas.
+   */
 
   componentDidMount() {  
-    //Este es un parametro que se metió en MainScreen.js
-    console.log(this.props.username);
+    /*
+      Este parametro se envio desde LoginScreen -> MainScreen -> FirstScreen
+      Solo se debe buscar en el objeto de propiedades del componente.
+    */
 
-    //Funciones iniciales deben ir aqui
+    console.log(this.props.username);
     this.initPokemonList();
   }
 

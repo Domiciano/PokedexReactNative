@@ -7,6 +7,14 @@ export default class LoginScreen extends Component {
 
   constructor(props){
     super(props)
+
+    //El state es una propiedad importante. Aqui debe poner variables que se presenten graficamente
+    //Usted puede leerlas desde cualquier punto usando this.state.count por ejemplo
+    //Sin embargo si quiere modificar el estado, debe hacerlo usando el metodo
+    //this.setState({count: 15}), si quiere por ejemplo modificar el estado count a 15.
+    //Esto es muy importante porque al usar this.setState provoca que el componente vuelva a ejecutar el
+    //metodo render().
+
     this.state = {
       count : 1,
       alfa: false,
@@ -18,6 +26,15 @@ export default class LoginScreen extends Component {
   onValueChange = ()=>{
     this.setState({alfa: !this.state.alfa})
   }
+
+
+  //Con este metodo se puede navegar entre "Actividades"
+  //Puede no poner el segundo parametro, pero si se pone
+  //Es para enviar datos al otro componente, en este caso Main
+  //A la que le estamos enviando this.state.username.
+  //La idea es que ese parametro llegue hasta FirstScreen
+  
+  //LoginScreen -> MainScreen -> FirstScreen
 
   navigateToProfile = () => {
     this.props.navigation.navigate('Main', { username: this.state.username });
@@ -33,6 +50,17 @@ export default class LoginScreen extends Component {
             source={require('../images/icesi.png')}
           />
         
+          {
+            /*
+              Este comentario esta entre llaves porque se requieren llaves para incrustar comentarios Javascript.
+              Mire los textInput, el valor hace referencia al estado this.state.username
+              Sin embargo, sabemos que el estado solo se puede modificar con this.setState
+              Por eso al callback llamado onChangeText se usa la varible text otorgada por el evento y con ella
+              se cambia el estado usando this.setState, eso provoca que podamos ver el texto escrito cada vez que
+              lo modificamos.
+             */
+          }
+
           <TextInput
             style={styles.basicTextIntput}
             placeholder="Identificación"
@@ -46,6 +74,12 @@ export default class LoginScreen extends Component {
             value={this.state.password}
             onChangeText={text =>  this.setState({password: text}) }
           />
+
+          {
+            /*
+              Los bloques Touchable contenedores de otros componentes con clickeabilidad 
+             */
+          }
 
           <TouchableOpacity onPress={this.navigateToProfile}
             style={[styles.signInButton, styles.topMargin]}>
