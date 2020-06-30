@@ -18,11 +18,13 @@ Pero si se quiere cargar estilo lazy loading, además de poner un pequeño mensa
 mientras el componente se muestra es mejor, porque aporta a la UX.
 
 Las importaciones lazy se hacen asi:
+*/
 
 const First = lazy(()=>import('../fragments/FirstScreen'));
 const Second = lazy(()=>import('../fragments/SecondScreen'));
 const Third = lazy(()=>import('../fragments/ThirdScreen'));
 
+/*
 Ese lazy import se complementa con el componente Suspense.
 Se encierra el componente importado estilo lazy en el componente Suspense
 Se debe definir el fallback que es lo que se va a mostrar mientras se carga
