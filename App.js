@@ -51,4 +51,8 @@ export default class App extends Component {
 
   Importante tener encuenta que cualquier pantalla, view o elemento visual de React es un Component
   De modo que NavigationContainer, Stack.Navigator y Stack.Screen son components
+
+
+
+  En el archivo package.json estan todas las dependencias y para agregarlas pueden usar npm o yarn 
  */
