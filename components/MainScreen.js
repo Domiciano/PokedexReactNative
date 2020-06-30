@@ -2,6 +2,9 @@ import React, {Component,Suspense, lazy} from 'react';
 import { Image, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+//Se puede usar una hoja de estilo para toda la aplicacion e importarla
+//de modo que al hacer cambios, se vean reflejados en toda la app.
 import {styles} from '../styles/styles.js'
 
 
