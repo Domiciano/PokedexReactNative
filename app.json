@@ -1,4 +1,6 @@
 {
   "name": "UCCareMobile",
-  "displayName": "UCCareMobile"
+  "displayName": "UCCareMobile",
+  "databaseName": "test.db",
+  "databaseVersion": "1.0"
 }

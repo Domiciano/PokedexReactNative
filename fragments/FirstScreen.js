@@ -32,13 +32,20 @@ export default class FirstScreen extends Component {
       if(json === null){
         return;
       }
+      
+      var pokemones=[];
       Object.entries(json).forEach(([id, value]) => {
         let pokeId = id;
         let pokeName = value.forms[0].name;
         let url = value.sprites.front_default;
-        let pokeObj = {key:pokeId, name:pokeName, url,url};
-        this.addPokemonToList(pokeObj);
+        let pokeObj = {key:pokeId, name:pokeName, url:url};
+        pokemones.push(pokeObj);
       });
+
+      //IMPORTANTE!!!!. Eviten hacer un setState dentro de un for.
+      //Para evitar que renderize el componente en cada ciclo.
+      //Lastimosamente el render() se hace mucho mas lento que con un Adapter nativo.
+      this.setState( {pokemonList: pokemones} ) ;
       
       
     })
