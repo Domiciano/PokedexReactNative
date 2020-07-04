@@ -62,11 +62,12 @@ const styles = StyleSheet.create({
         },
 
         icesiLogo: {
-            height: 150,
+            height: 100,
             width: 300,
-            resizeMode: 'center'
+            resizeMode: 'stretch'
         },
-
+        //Todas las imágenes deben ir en stretch, al probarlo en iPhone, resulta que no muestra bien 
+        //Cuando se le pone cover
         rowList: {
             width: '100%',
             flexDirection: 'row',
@@ -84,6 +85,23 @@ const styles = StyleSheet.create({
             width: 28,
             height: 28,
             opacity: 0.3
+        },
+        centerText: {
+            flex: 1,
+            fontSize: 18,
+            padding: 32,
+            color: '#777'
+        },
+        textBold: {
+            fontWeight: '500',
+            color: '#000'
+        },
+        buttonText: {
+            fontSize: 21,
+            color: 'rgb(0,122,255)'
+        },
+        buttonTouchable: {
+            padding: 16
         }
 
     });

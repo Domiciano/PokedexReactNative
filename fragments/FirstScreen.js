@@ -143,8 +143,11 @@ export default class FirstScreen extends Component {
     tambien van a ser llamadas.
    */
 
+  //1. PASO 1
   componentDidMount() {  
     /*
+      Este es el primer metodo en ejecutarse
+
       Este parametro se envio desde LoginScreen -> MainScreen -> FirstScreen
       Solo se debe buscar en el objeto de propiedades del componente.
     */
@@ -153,7 +156,7 @@ export default class FirstScreen extends Component {
     this.initPokemonList();
   }
 
-
+  //2. PASO 2
   render() {
       return (
       <View style={styles.container}>

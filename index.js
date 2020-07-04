@@ -32,6 +32,11 @@ db.execute("CREATE TABLE IF NOT EXISTS personas (id INTEGER PRIMARY KEY AUTOINCR
 
 AppRegistry.registerComponent(name, () => App);
 
+//{} -> Exige un return
+//Sin llaves es retorno
+
+
+
 //En React-native es recomendable usar lambdas para crear funciones
 /*
     En lugar de definirlas como:

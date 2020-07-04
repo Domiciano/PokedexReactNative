@@ -43,6 +43,9 @@ export default class MainScreen extends Component{
 
     constructor(props){
       super(props); 
+
+      console.log("*************");
+      console.log(props);
     }
 
     render(){

@@ -3,11 +3,15 @@ import { TouchableOpacity, Image, Text, TextInput, Button, StyleSheet, View } fr
 import {styles} from '../styles/styles.js'
 import CheckBox from '@react-native-community/checkbox';
 
+
+
+
 export default class LoginScreen extends Component {
 
   constructor(props){
-    super(props)
-
+    super(props);
+    console.log(props);
+    this.global = "GLOBAL";
     //El state es una propiedad importante. Aqui debe poner variables que se presenten graficamente
     //Usted puede leerlas desde cualquier punto usando this.state.count por ejemplo
     //Sin embargo si quiere modificar el estado, debe hacerlo usando el metodo
@@ -15,6 +19,7 @@ export default class LoginScreen extends Component {
     //Esto es muy importante porque al usar this.setState provoca que el componente vuelva a ejecutar el
     //metodo render().
 
+    //El estado me permite representar graficamente algo
     this.state = {
       count : 1,
       alfa: false,
@@ -23,8 +28,17 @@ export default class LoginScreen extends Component {
     }
   }
 
+  //Stackoverflow puede salir esto: bind(), pero ya no se usa
+
+  //Los metodos se TIENEN que declarar estilo arrow, para no usar bind()
   onValueChange = ()=>{
     this.setState({alfa: !this.state.alfa})
+  }
+
+
+  //Esta es la notacion oficial para este proyecto
+  miFuncion = () => {
+
   }
 
 
@@ -37,11 +51,16 @@ export default class LoginScreen extends Component {
   //LoginScreen -> MainScreen -> FirstScreen
 
   navigateToProfile = () => {
+    //this.setState({username: "Esto es un test"});
     this.props.navigation.navigate('Main', { username: this.state.username });
   }
 
+  //onCreate
+  //El tipo del render fuera Component
   render() {
-    //const { navigate } = this.props.navigation;
+    //const { navigate } = this.props.navigation
+    //cajones flex
+    //https://reactnative.dev/docs/flexbox
     return (
       <View style={styles.container}>
 
@@ -60,6 +79,7 @@ export default class LoginScreen extends Component {
               lo modificamos.
              */
           }
+          
 
           <TextInput
             style={styles.basicTextIntput}
@@ -67,6 +87,7 @@ export default class LoginScreen extends Component {
             value={this.state.username}
             onChangeText={text => this.setState({username: text}) }
           />  
+          {/*Usamos setState para modificar el estado, no lo hacemos manualmente*/}
 
           <TextInput   
             style={styles.basicTextIntput}
@@ -78,6 +99,7 @@ export default class LoginScreen extends Component {
           {
             /*
               Los bloques Touchable contenedores de otros componentes con clickeabilidad 
+              update UI = setState()
              */
           }
 

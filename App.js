@@ -7,10 +7,36 @@ import Login from './components/LoginScreen'
 import Main from './components/MainScreen'
 
 
+/*
+Componente sin estado, version metodo
+export default App() => {
+  return (
+    <View>
+    </View>
+  );
+}
+*/
+
+
+
 export default class App extends Component {
+
+  //Mo van aca
+  //var numero;
+  //var global;
+  constructor(props){
+    super(props);
+    console.log(props);
+    this.numero = {};
+    this.global = "";
+  }
+
+
 
   render(){
     const Stack = createStackNavigator();
+
+    //JSX = HTML
     return (
         <NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
@@ -23,6 +49,7 @@ export default class App extends Component {
               name="Main"
               component={Main}
             />
+
           </Stack.Navigator>
         </NavigationContainer>
       );
