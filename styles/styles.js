@@ -1,6 +1,7 @@
 
 import { StyleSheet } from 'react-native';
 
+//Promise
 const styles = StyleSheet.create({
 
         bottomMargin: {
@@ -24,6 +25,8 @@ const styles = StyleSheet.create({
             padding: 8,
             borderBottomWidth:1
         },
+
+        
 
         row: {
             flexDirection: 'row',
@@ -64,7 +67,8 @@ const styles = StyleSheet.create({
         icesiLogo: {
             height: 100,
             width: 300,
-            resizeMode: 'stretch'
+            resizeMode: 'stretch',
+            
         },
         //Todas las imágenes deben ir en stretch, al probarlo en iPhone, resulta que no muestra bien 
         //Cuando se le pone cover
@@ -102,7 +106,44 @@ const styles = StyleSheet.create({
         },
         buttonTouchable: {
             padding: 16
+        },
+
+        dialogContainer: {
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+
+        temperatureTextIntput: {
+            width : 100,
+            height : 'auto',
+            borderColor:'#888',
+            padding: 8,
+            textAlign: 'center',
+            borderBottomWidth:1,
+            fontSize: 28,
+        },
+
+        dialogTitle: {
+            fontSize: 28,
+            color: '#2764E3'
+        },
+
+        dialogButton: {
+            marginTop: 24,
+            width : 150,
+            height : 42,
+            backgroundColor: '#2764E3',
+            borderRadius: 10,
+            fontSize: 18,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+
+        dialogButtonText: {
+            fontSize: 14,
+            color: '#fff'
         }
+
 
     });
 

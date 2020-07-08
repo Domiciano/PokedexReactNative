@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, Text, TextInput, Button, StyleSheet, View } from 'react-native';
-import {styles} from '../styles/styles.js'
+import {styles} from '../styles/styles.js';
 import CheckBox from '@react-native-community/checkbox';
+
 
 
 
@@ -36,6 +37,8 @@ export default class LoginScreen extends Component {
   }
 
 
+
+
   //Esta es la notacion oficial para este proyecto
   miFuncion = () => {
 
@@ -53,6 +56,8 @@ export default class LoginScreen extends Component {
   navigateToProfile = () => {
     //this.setState({username: "Esto es un test"});
     this.props.navigation.navigate('Main', { username: this.state.username });
+    
+
   }
 
   //onCreate

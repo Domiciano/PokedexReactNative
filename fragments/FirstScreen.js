@@ -96,7 +96,7 @@ export default class FirstScreen extends Component {
     .catch((error) => {
       alert('Verifique su conexión a internet')
     });
-    
+    //PROMISES
   }
 
   deleteAllPokemons = () => {
