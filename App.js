@@ -6,19 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './components/LoginScreen'
 import Main from './components/MainScreen'
 
-
-/*
-Componente sin estado, version metodo
-export default App() => {
-  return (
-    <View>
-    </View>
-  );
-}
-*/
-
-
-
 export default class App extends Component {
 
   //Mo van aca
