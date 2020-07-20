@@ -8,9 +8,6 @@ import Main from './components/MainScreen'
 
 export default class App extends Component {
 
-  //Mo van aca
-  //var numero;
-  //var global;
   constructor(props){
     super(props);
     console.log(props);
